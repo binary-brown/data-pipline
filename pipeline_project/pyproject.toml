@@ -1,0 +1,35 @@
+[tool.poetry]
+name = "v-pipline"
+version = "0.1.0"
+description = ""
+authors = ["Christian Brown <chris@boxtalk.ai>"]
+readme = "README.md"
+packages = [{include = "v_pipline", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+typer = {extras = ["all"], version = "^0.12.5"}
+sqlmodel = "^0.0.22"
+asyncpg = "^0.29.0"
+rich = "^13.8.0"
+openai = "^1.43.0"
+ollama = "^0.3.2"
+pyyaml = "^6.0.2"
+llama-index = "^0.11.5"
+langchain-community = "^0.2.16"
+langchain-core = "^0.2.38"
+llama-index-vector-stores-postgres = "^0.2.1"
+python-dotenv = "^1.0.1"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.8.0"
+isort = "^5.13.2"
+flake8 = "^7.1.1"
+
+[tool.poetry.scripts]
+vp = "v_pipline.cli.main:typer_app"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
