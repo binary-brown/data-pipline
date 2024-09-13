@@ -1,19 +1,26 @@
 {
-  "configurations": [
-    {
-      "name": "Debug CLI",
-      "type": "debugpy",
-      "request": "attach",
-      "connect": {
-        "host": "localhost",
-        "port": 5678
-      },
-      "pathMappings": [
-        {
-          "localRoot": "${workspaceFolder}/pipeline_project",
-          "remoteRoot": "."
-        }
-      ]
-    }
-  ]
+	"configurations": [
+		{
+			"name": "Python Debugger: Current File",
+			"type": "debugpy",
+			"request": "launch",
+			"program": "${file}",
+			"console": "integratedTerminal"
+		},
+		{
+			"name": "Debug CLI",
+			"type": "debugpy",
+			"request": "attach",
+			"listen": {
+				"host": "localhost",
+				"port": 5678
+			},
+			"pathMappings": [
+				{
+					"localRoot": "${workspaceFolder}/pipeline_project",
+					"remoteRoot": "."
+				}
+			]
+		}
+	]
 }

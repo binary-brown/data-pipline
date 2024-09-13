@@ -20,12 +20,29 @@ langchain-community = "^0.2.16"
 langchain-core = "^0.2.38"
 llama-index-vector-stores-postgres = "^0.2.1"
 python-dotenv = "^1.0.1"
+sqlalchemy = "^2.0.34"
+msal = "^1.31.0"
+sqlglot = "^25.20.1"
+sqlparser = "^0.0.9"
+sqlparse = "^0.5.1"
+llama-index-embeddings-nomic = "^0.5.0"
+llama-index-embeddings-jinaai = "^0.3.0"
+llama-index-embeddings-openai = "^0.2.4"
+llama-index-embeddings-langchain = "^0.2.1"
+llama-index-embeddings-huggingface = "^0.3.1"
+llama-index-embeddings-instructor = "^0.2.1"
+llama-index-embeddings-ollama = "^0.3.0"
+llama-index-embeddings-text-embeddings-inference = "^0.2.0"
+ruff = "^0.6.4"
+azure-identity = "^1.17.1"
+msgraph-sdk = "^1.7.0"
 
 
 [tool.poetry.group.dev.dependencies]
 black = "^24.8.0"
 isort = "^5.13.2"
 flake8 = "^7.1.1"
+ruff = "^0.6.4"
 
 [tool.poetry.scripts]
 vp = "v_pipline.cli.main:typer_app"
@@ -33,3 +50,39 @@ vp = "v_pipline.cli.main:typer_app"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+include = ["pyproject.toml", "src/**/*.py", "scripts/**/*.py"]
+line-length = 180
+indent-width = 2
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".ipynb_checkpoints",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pyenv",
+    ".pytest_cache",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    ".vscode",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "site-packages",
+    "venv",
+]
+
+[tool.ruff.format]
+indent-style = "tab"

@@ -3,7 +3,7 @@
 {
     "name": "Data pipline project",
     // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-    "image": "ghcr.io/chrisb-bacon/base-node-python-ubuntu:latest",
+    "image": "ghcr.io/chrisb-bacon/dev-machine-devcontainer:latest",
     "containerEnv": {
       "OP_SERVICE_ACCOUNT_TOKEN": "${localEnv:OP_SERVICE_ACCOUNT_TOKEN}",
       "POETRY_VIRTUALENVS_IN_PROJECT": "true",
@@ -15,14 +15,10 @@
     "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces,type=bind",
     "mounts": [
         "source=external_data,target=/workspaces/data,type=volume",
+        "source=ollama_models,target=/root/.ollama,type=volume"
     ],
     "workspaceFolder": "/workspaces",
     "userEnvProbe": "loginInteractiveShell",
-    "features": {
-      "ghcr.io/devcontainers-contrib/features/poetry:2": {},
-      "ghcr.io/nikobockerman/devcontainer-features/poetry-persistent-cache:1": {},
-      "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
-    },
     "forwardPorts": [5173, 8001, 8000],
     "portsAttributes": {
       "5173": {
@@ -41,10 +37,9 @@
           "ms-vscode-remote.remote-containers",
           "mikestead.dotenv",
           "ms-python.python",
-          "ms-python.black-formatter",
-          "ms-python.flake8",
+          "charliermarsh.ruff",
+          "tamasfe.even-better-toml",
           "ms-python.debugpy",
-          "ms-python.isort",
           "GitHub.copilot",
           "Github.copilot-chat",
           "GitHub.vscode-pull-request-github",
@@ -57,8 +52,6 @@
           "ms-vscode-remote.remote-wsl-explorer",
           "ms-vscode-remote.remote-wsl-edit",
           "ms-vscode-remote.vscode-remote-extensionpack",
-          "ms-vscode.cpptools",
-          "Spoorthi.code-with-todoist",
           "ms-azuretools.vscode-docker",
           "kisstkondoros.vscode-gutter-preview",
           "VisualStudioExptTeam.vscodeintellicode",

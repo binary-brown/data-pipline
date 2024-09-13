@@ -1,19 +1,16 @@
 from pathlib import Path
-from rich import print
+
 import typer
+from yaml import safe_dump
+
+from .config import Config
 
 
-def get_or_create_config(app_name: str, database_url: str = None):
-    app_dir = typer.get_app_dir(app_name=app_name)
-    config_path: Path = Path(app_dir) / "config.yaml"
-    if not config_path.is_file():
-        create_config = typer.prompt(
-            "Config file does not exist. Would you like to create one? [y/n]"
-        )
-        if create_config.lower() == "y":
-            if not Path(app_dir).is_dir():
-                Path(app_dir).mkdir(parents=True, exist_ok=False)
-            config_path.touch()
-            print(f"Created config file at {config_path}")
-    else:
-        print(f"Config file already exists at {config_path}")
+def get_or_create_config(app_name: str):
+	app_dir = typer.get_app_dir(app_name=app_name)
+	config_path: Path = Path(app_dir) / "config.yaml"
+	config = Config.from_config_file(app_name, ask_user=True)
+	if config is None:
+		return None
+	with open(config_path, "w") as f:
+		safe_dump(config.model_dump(), f)
